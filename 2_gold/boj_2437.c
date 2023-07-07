@@ -1,56 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void quick_sort(int length, int start, int *arr);
-void merge_sort(int start, int end, int* arr,int* cal);
 
-int main(int argc, char **argv)
+void merge_sort(int start, int end, int* arr, int* cal);
+
+int main()
 {
-    int N;
+    int N,sum=0;
     scanf("%d",&N);
-
     int *arr=(int*)malloc(sizeof(int)*N);
+    int *cal=(int*)malloc(sizeof(int)*N);
     for(int i=0;i<N;i++)
     {
         scanf("%d",arr+i);
     }
 
-    //quick_sort(0,N-1,arr); for quick sort
-    
+    merge_sort(0,N,arr,cal);
 
-    ///* for Merge sort   
-    int *cal=(int*)malloc(sizeof(int)*N);
-    merge_sort(0,N, arr, cal);
-    free(cal);
-    //*/
-
-    for(int i=0;i<N;i++) printf("%d\n",arr[i]);
-    free(arr);
-    return 0;
-}
-
-void quick_sort(int start, int end,int *arr)
-{
-    if (end-start>0)
+    for(int i=0;i<N;i++)
     {
-        int i=start, j=end, pivot=arr[(start+end)/2], temp;
-        while(i<=j)
-        {
-            while(arr[i]<pivot) i++;
-            while(arr[j]>pivot) j--;
+        if(sum<arr[i]-1) break;
 
-            if (i<=j)
-            {
-            temp=arr[i];
-            arr[i]=arr[j];
-            arr[j]=temp;
-            i++; j--;
-            }
-        }
-
-        quick_sort(start,j,arr);
-        quick_sort(i,end,arr);
+        sum+=arr[i];
     }
+    free(arr);
+    free(cal);
+    printf("%d",sum+1);
+    return 0;
+
 }
 
 void merge_sort(int start, int end, int* arr, int* cal)
