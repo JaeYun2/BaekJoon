@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 void merge_sort(int start, int end, int(*arr)[2],int(*cal)[2]);
 
